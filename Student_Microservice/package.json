@@ -1,0 +1,17 @@
+{
+  "name": "student_microservice",
+  "version": "1.0.0",
+  "description": "",
+  "main": "student-service.js",
+  "scripts": {
+    "start": "node student-service.js"
+  },
+  "dependencies": {
+    "express": "^5.2.1"
+  },
+  "devDependencies": {},
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs"
+}

@@ -1,0 +1,16 @@
+{
+  "name": "librarian_microservice",
+  "version": "1.0.0",
+  "description": "",
+  "main": "librarian-service.js",
+  "scripts": {
+    "start": "node librarian-service.js"
+  },
+  "dependencies": {
+    "express": "^5.2.1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs"
+}
