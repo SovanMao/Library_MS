@@ -6,11 +6,12 @@ services:
       - ./nginx.conf:/etc/nginx/nginx.conf:ro
 
     depends_on:
-      - student_service
+      - student_service_1
+      - student_service_2
 
   gateway_service:
     container_name: APIgateway_service
-    build: 
+    build:
       context: ./APIGateway_Microservice
       dockerfile: Dockerfile
 
@@ -18,7 +19,7 @@ services:
       - "80:3000"
 
     environment:
-      - JWT_SECRETE=...
+      - JWT_SECRETE=${JWT_SECRETE}
     depends_on:
       - auth_service
       - librarian_service
@@ -26,27 +27,41 @@ services:
 
   auth_service:
     container_name: authentication_service
-    build: 
+    build:
       context: ./Authentication_Microservice
       dockerfile: Dockerfile
 
     environment:
-      - JWT_SECRETE=...
-      - MONGO_URI=...
+      - JWT_SECRETE=${JWT_SECRETE}
+      - MONGO_URI=${MONGO_URI}
 
   librarian_service:
     container_name: librarian_service
-    build: 
+    build:
       context: ./Librarian_Microservice
       dockerfile: Dockerfile
+    environment:
+      - MONGO_URI=${MONGO_URI}
 
-  student_service:
-    build: 
+  student_service_1:
+    container_name: student_service_1
+    build:
       context: ./Student_Microservice
       dockerfile: Dockerfile
+    hostname: student1
+    restart: on-failure
+    environment:
+      - MONGO_URI=${MONGO_URI}
 
-    deploy:
-      replicas: 2
+  student_service_2:
+    container_name: student_service_2
+    build:
+      context: ./Student_Microservice
+      dockerfile: Dockerfile
+    hostname: student2
+    restart: on-failure
+    environment:
+      - MONGO_URI=${MONGO_URI}
 
 networks:
   default:
