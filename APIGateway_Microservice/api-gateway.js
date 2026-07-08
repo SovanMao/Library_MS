@@ -8,9 +8,9 @@ const proxy = httpProxy.createProxyServer();
 const jwt = require('jsonwebtoken')
 require('dotenv').config()
 const JWT_SECRETE = process.env.JWT_SECRETE;
-const STUDENT_SERVICE_URL = process.env.STUDENT_SERVICE_URL || 'http://student_lb:80';
-const LIBRARIAN_SERVICE_URL = process.env.LIBRARIAN_SERVICE_URL || 'http://librarian_service:5001';
-const AUTH_SERVICE_URL = process.env.AUTH_SERVICE_URL || 'http://auth_service:4000';
+const STUDENT_SERVICE_URL = process.env.STUDENT_SERVICE_URL || 'http://student-service:80';
+const LIBRARIAN_SERVICE_URL = process.env.LIBRARIAN_SERVICE_URL || 'http://librarian-service:5001';
+const AUTH_SERVICE_URL = process.env.AUTH_SERVICE_URL || 'http://auth-service:4000';
 
 function authToken(req, res, next) {
     console.log(req.headers.authorization)
